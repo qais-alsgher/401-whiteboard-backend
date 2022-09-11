@@ -7,6 +7,11 @@ app.use(cors);
 app.use(express.json());
 app.use(messageRuoter);
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: "qais"
+    })
+})
 function start(port) {
     app.listen(port, () => { console.log(`the server start for port ${port}`) });
 }
