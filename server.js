@@ -1,8 +1,8 @@
 `use strict`;
 const express = require('express');
 const cors = require('cors');
-const messageRuoter = require('./routes/post.route');
 const app = express();
+const messageRuoter = require('./routes/post.route');
 app.use(cors);
 app.use(express.json());
 app.use(messageRuoter);
