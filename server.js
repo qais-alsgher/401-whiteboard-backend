@@ -1,11 +1,17 @@
 `use strict`;
 const express = require('express');
 const cors = require('cors');
-const messageRuoter = require('./routes/post.route');
 const app = express();
-app.use(cors);
+const messageRuoter = require('./routes/post.route');
+app.use(cors());
 app.use(express.json());
 app.use(messageRuoter);
+
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: "hello word"
+    })
+})
 
 function start(port) {
     app.listen(port, () => { console.log(`the server start for port ${port}`) });
