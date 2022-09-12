@@ -19,7 +19,6 @@ async function getMessage(req, res) {
 };
 
 async function createMessage(req, res) {
-    console.log(req.body);
     let newMessage = req.body;
     const message = await Message.create(newMessage);
     res.status(201).json(message);
