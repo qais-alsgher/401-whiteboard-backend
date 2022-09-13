@@ -3,11 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const postRuoter = require('./routes/post.route');
+const commintPouter = require('./routes/comment.route')
 const heandleError = require('./error-handlers/500');
 const heandleErrorPageNotFound = require('./error-handlers/404');
+
 app.use(cors());
 app.use(express.json());
 app.use(postRuoter);
+app.use(commintPouter);
 
 app.get('/', (req, res, next) => {
     res.status(200).json({
