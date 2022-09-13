@@ -2,59 +2,59 @@
 const express = require('express');
 const router = express.Router();
 
-const { Message } = require('../models/index');
+const { Post } = require('../models/index');
 
 // Routes 
-router.get('/message', getMessage);
-router.post('/message', createMessage);
-router.get('/message/:id', getOneMessage);
-router.delete('/message/:id', deleteMessage);
-router.put('/message/:id', updatMessage);
+router.get('/post', getPost);
+router.post('/post', createPost);
+router.get('/post/:id', getOnePost);
+router.delete('/post/:id', deletePost);
+router.put('/post/:id', updatPost);
 
-async function getMessage(req, res) {
-    let message = await Message.findAll();
+async function getPost(req, res) {
+    let post = await Post.findAll();
     res.status(200).json({
-        message
+        post
     })
 };
 
-async function createMessage(req, res) {
-    let newMessage = req.body;
-    const message = await Message.create(newMessage);
-    res.status(201).json(message);
+async function createPost(req, res) {
+    let newpost = req.body;
+    const post = await Post.create(newpost);
+    res.status(201).json(post);
 };
 
-async function getOneMessage(req, res) {
+async function getOnePost(req, res) {
     const id = req.params.id;
-    const message = await Message.findOne({
+    const post = await Post.findOne({
         where: { id: id }
     });
-    res.status(200).json({ message });
+    res.status(200).json({ post });
 };
 
-async function deleteMessage(req, res) {
+async function deletePost(req, res) {
     const id = req.params.id;
-    const messageDeleted = await Message.destroy({
+    const postDeleted = await Post.destroy({
         where: { id: id }
     });
-    res.status(204).json(messageDeleted);
+    res.status(204).json(postDeleted);
 
 };
 
-async function updatMessage(req, res) {
+async function updatPost(req, res) {
     const id = req.params.id;
     const updateData = req.body;
     // first way to put method
-    // const message = await Message.findOne({
+    // const post = await Post.findOne({
     //     where: { id: id }
     // });
-    // const messageUpdate = await message.update(updateData);
+    // const postUpdate = await post.update(updateData);
 
     // second way to put method
-    const messageUpdate = await Message.update(
-        { messageContent: updateData.messageContent },
+    const postUpdate = await Post.update(
+        { postContent: updateData.PostContent },
         { where: { id: id } });
-    res.status(200).json(messageUpdate);
+    res.status(200).json(postUpdate);
 }
 
 

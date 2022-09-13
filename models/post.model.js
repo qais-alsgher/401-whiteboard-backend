@@ -1,13 +1,17 @@
 `use strict`;
-const Message = (sequelize, DataTypes) => sequelize.define('Message', {
-    messageAouthr: {
+const Post = (sequelize, DataTypes) => sequelize.define('Post', {
+    postAouthr: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    messageContent: {
+    postTitle: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    postContent: {
         type: DataTypes.STRING,
         allowNull: false
     }
 });
 
-module.exports = Message;
+module.exports = Post;
