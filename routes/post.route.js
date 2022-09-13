@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Post } = require('../models/index');
+const { Post, commintModel } = require('../models/index');
 
 // Routes 
 router.get('/post', getPost);
@@ -10,9 +10,10 @@ router.post('/post', createPost);
 router.get('/post/:id', getOnePost);
 router.delete('/post/:id', deletePost);
 router.put('/post/:id', updatPost);
+router.get('/PostCommint', getPostCommint);
 
 async function getPost(req, res) {
-    let post = await Post.findAll();
+    let post = await Post.read();
     res.status(200).json({
         post
     })
@@ -26,18 +27,16 @@ async function createPost(req, res) {
 
 async function getOnePost(req, res) {
     const id = req.params.id;
-    const post = await Post.findOne({
-        where: { id: id }
-    });
+    const post = await Post.read(id);
     res.status(200).json({ post });
 };
 
 async function deletePost(req, res) {
     const id = req.params.id;
-    const postDeleted = await Post.destroy({
-        where: { id: id }
+    const postDeleted = await Post.delete(id);
+    res.status(204).json({
+        message: `the deleted post successful for id : ${id}`
     });
-    res.status(204).json(postDeleted);
 
 };
 
@@ -49,13 +48,16 @@ async function updatPost(req, res) {
     //     where: { id: id }
     // });
     // const postUpdate = await post.update(updateData);
-
     // second way to put method
-    const postUpdate = await Post.update(
-        { postContent: updateData.PostContent },
-        { where: { id: id } });
+    const postUpdate = await Post.update(id, updateData);
     res.status(200).json(postUpdate);
 }
 
+
+async function getPostCommint(req, res) {
+
+    const PostCommint = await Post.readCommitRelatedPost(commintModel);
+    res.status(200).json(PostCommint);
+}
 
 module.exports = router;
