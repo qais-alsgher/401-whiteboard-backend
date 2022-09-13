@@ -2,12 +2,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const messageRuoter = require('./routes/post.route');
+const postRuoter = require('./routes/post.route');
 const heandleError = require('./error-handlers/500');
 const heandleErrorPageNotFound = require('./error-handlers/404');
 app.use(cors());
 app.use(express.json());
-app.use(messageRuoter);
+app.use(postRuoter);
 
 app.get('/', (req, res, next) => {
     res.status(200).json({
