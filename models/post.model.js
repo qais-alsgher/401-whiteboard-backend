@@ -11,11 +11,10 @@ const Post = (sequelize, DataTypes) => sequelize.define('Post', {
     postContent: {
         type: DataTypes.STRING,
         allowNull: false
+    }, postImge: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
-    // , postImge: {
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
 
 });
 
