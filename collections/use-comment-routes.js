@@ -13,7 +13,7 @@ class useCommentRouttes {
                 return await this.model.findAll();
             }
         } catch (e) {
-            console.log(`Error in reading data from id : ${id}`);
+            console.log(`Error in reading data from modle : (${this.model.name}) with id : ${id}`);
         }
     }
 
@@ -21,7 +21,7 @@ class useCommentRouttes {
         try {
             return await this.model.create(obj);
         } catch (e) {
-            console.log(`Error for creation`);
+            console.log(`Error for creation from modle : (${this.model.name})`);
         }
     }
 
@@ -30,7 +30,7 @@ class useCommentRouttes {
             const postById = await this.read(id);
             return await postById.update(obj);
         } catch (e) {
-            console.log(`Error while ubdate data with id : ${id}`)
+            console.log(`Error while ubdate data from modle : (${this.model.name}) with id : ${id} `)
         }
     }
 
@@ -38,7 +38,7 @@ class useCommentRouttes {
         try {
             return await this.model.delete({ where: { id: id } });
         } catch (e) {
-            console.log(`Error while deleting data with id : ${id}`);
+            console.log(`Error while deleting data from modle : (${this.model.name}) with id : ${id}`);
         }
     }
 
@@ -46,9 +46,9 @@ class useCommentRouttes {
 
     async readCommitRelatedPost(Commint) {
         try {
-            return await this.modelfindAll({ include: [Commint] });
+            return await this.model.findAll({ include: [Commint] });
         } catch (e) {
-            console.log(`Error while reading commint reation to post for model : ${this.model} `);
+            console.log(`Error while reading commint reation to post for model : ${this.model.name} `);
         }
     }
 
