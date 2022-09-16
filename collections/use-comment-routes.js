@@ -36,7 +36,7 @@ class useCommentRouttes {
 
     async delete(id) {
         try {
-            return await this.model.delete({ where: { id: id } });
+            return await this.model.destroy({ where: { id: id } });
         } catch (e) {
             console.log(`Error while deleting data from modle : (${this.model.name}) with id : ${id}`);
         }
@@ -44,11 +44,11 @@ class useCommentRouttes {
 
 
 
-    async readCommitRelatedPost(Commint) {
+    async readCommitRelatedPost(Comment) {
         try {
-            return await this.model.findAll({ include: [Commint] });
+            return await this.model.findAll({ include: [Comment] });
         } catch (e) {
-            console.log(`Error while reading commint reation to post for model : ${this.model.name} `);
+            console.log(`Error while reading comment reation to post for model : ${this.model.name} `);
         }
     }
 

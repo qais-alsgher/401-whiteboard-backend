@@ -1,10 +1,10 @@
 `use strict`;
-const Commint = (sequelize, DataTypes) => sequelize.define('commint', {
-    commintAuther: {
+const Comment = (sequelize, DataTypes) => sequelize.define('comment', {
+    commentAuther: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    commintContent: {
+    commentContent: {
         type: DataTypes.STRING,
         defaultValue: " ",
         allowNull: false
@@ -17,4 +17,4 @@ const Commint = (sequelize, DataTypes) => sequelize.define('commint', {
 
 });
 
-module.exports = Commint;
+module.exports = Comment;

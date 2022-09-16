@@ -2,49 +2,49 @@
 const express = require('express');
 const router = express.Router();
 
-const { Commint } = require('../models/index');
+const { Comment } = require('../models/index');
 
 // Routes 
-router.get('/commint', getCommint);
-router.post('/commint', createCommint);
-router.get('/commint/:id', getOneCommint);
-router.delete('/commint/:id', deleteCommint);
-router.put('/commint/:id', updatCommint);
+router.get('/comment', getComment);
+router.post('/comment', createComment);
+router.get('/comment/:id', getOneComment);
+router.delete('/comment/:id', deleteComment);
+router.put('/comment/:id', updatComment);
 
-async function getCommint(req, res) {
-    let commint = await Commint.read();
+async function getComment(req, res) {
+    let comment = await Comment.read();
     res.status(200).json({
-        commint
+        comment
     })
 };
 
-async function createCommint(req, res) {
-    let newCommint = req.body;
-    const commint = await Commint.create(newCommint);
-    res.status(201).json(commint);
+async function createComment(req, res) {
+    let newComment = req.body;
+    const comment = await Comment.create(newComment);
+    res.status(201).json(comment);
 };
 
-async function getOneCommint(req, res) {
+async function getOneComment(req, res) {
     const id = req.params.id;
-    const commint = await Commint.read(id);
-    res.status(200).json({ commint });
+    const comment = await Comment.read(id);
+    res.status(200).json({ comment });
 };
 
-async function deleteCommint(req, res) {
+async function deleteComment(req, res) {
     const id = req.params.id;
-    const commintDeleted = await Commint.delete(id);
+    const commentDeleted = await Comment.delete(id);
     res.status(204).json({
-        message: `the deleted commint successful for id : ${id}`
+        message: `the deleted comment successful for id : ${id}`
     });
 
 };
 
-async function updatCommint(req, res) {
+async function updatComment(req, res) {
     const id = req.params.id;
     const updateData = req.body;
 
-    const commintUpdate = await Commint.update(id, updateData);
-    res.status(200).json(commintUpdate);
+    const commentUpdate = await Comment.update(id, updateData);
+    res.status(200).json(commentUpdate);
 }
 
 
