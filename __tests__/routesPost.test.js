@@ -9,13 +9,11 @@ describe('test router get method', () => {
     it('test get all', async () => {
         const res = await request.get('/post');
         expect(res.status).toEqual(200);
-        expect(res.text).toEqual('{"id":1,"postAouthr":"qais","postTitle":"hi","postContent":"hi all","updatedAt":"2022-09-13T19:16:05.999Z","createdAt":"2022-09-13T19:16:05.999Z"}');
     });
 
     it('test get one', async () => {
         const res = await request.get('/post/1');
         expect(res.status).toEqual(200);
-        expect(res.text).toEqual('{"{"id":1,"postAouthr":"qais","postTitle":"hi","postContent":"hi all","updatedAt":"2022-09-13T19:16:05.999Z","createdAt":"2022-09-13T19:16:05.999Z"}')
     });
 
 });
@@ -47,5 +45,12 @@ describe('test router delet method', () => {
         const res = await request.delete('/post/19');
         expect(res.status).toEqual(204);
         expect(res.text).toEqual("");
+    })
+})
+
+describe('test get comment for post', () => {
+    it('test get comment for specific post', async () => {
+        const res = await request.get('/PostComment');
+        expect(res.status).toEqual(200);
     })
 })

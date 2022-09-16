@@ -2,7 +2,7 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 const Post = require('./post.model');
-const Commint = require('./commint.model');
+const Comment = require('./comment.model');
 const collection = require('../collections/use-comment-routes');
 const POSTGRES_URL = process.env.DATABASE_URL;
 
@@ -18,20 +18,20 @@ const sequelizeOption = {
 const sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
 
 const postModel = Post(sequelize, DataTypes);
-const commintModel = Commint(sequelize, DataTypes);
-// one to many relation one post have many commint 
-// to poenter post to have many commmint 
-postModel.hasMany(commintModel, { foreignKey: 'postId', sourceKey: 'id' });
+const commentModel = Comment(sequelize, DataTypes);
+// one to many relation one post have many comment 
+// to poenter post to have many commment 
+postModel.hasMany(commentModel, { foreignKey: 'postId', sourceKey: 'id' });
 // to know the connint that related specific post  
-commintModel.belongsTo(postModel, { foreignKey: 'postId', targetKey: 'id' });
+commentModel.belongsTo(postModel, { foreignKey: 'postId', targetKey: 'id' });
 
 const postCollection = new collection(postModel);
-const commintCllection = new collection(commintModel);
+const commentCllection = new collection(commentModel);
 
 
 module.exports = {
     db: sequelize,
     Post: postCollection,
-    Commint: commintCllection,
-    commintModel: commintModel
+    Comment: commentCllection,
+    commentModel: commentModel
 }

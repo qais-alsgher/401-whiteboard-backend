@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Post, commintModel } = require('../models/index');
+const { Post, commentModel } = require('../models/index');
 
 // Routes 
 router.get('/post', getPost);
@@ -10,7 +10,7 @@ router.post('/post', createPost);
 router.get('/post/:id', getOnePost);
 router.delete('/post/:id', deletePost);
 router.put('/post/:id', updatPost);
-router.get('/PostCommint', getPostCommint);
+router.get('/PostComment', getPostComment);
 
 async function getPost(req, res) {
     let post = await Post.read();
@@ -54,10 +54,10 @@ async function updatPost(req, res) {
 }
 
 
-async function getPostCommint(req, res) {
+async function getPostComment(req, res) {
 
-    const PostCommint = await Post.readCommitRelatedPost(commintModel);
-    res.status(200).json(PostCommint);
+    const PostComment = await Post.readCommitRelatedPost(commentModel);
+    res.status(200).json(PostComment);
 }
 
 module.exports = router;
