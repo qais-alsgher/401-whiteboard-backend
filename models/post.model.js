@@ -16,7 +16,7 @@ const Post = (sequelize, DataTypes) => sequelize.define('Post', {
         allowNull: true
     }, aouthrImage: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         default: "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236__340.png"
     }
 
